@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom"
 import Nav from "./components/Nav"
 import CustomCursor from "./components/CustomCursor"
 import IntroLoader from "./components/IntroLoader"
+import ScrollToTop from "./components/ScrollToTop"
 import Footer from "./components/Footer"
 import Home from "./pages/Home"
 import WsdotCaseStudy from "./pages/WsdotCaseStudy"
@@ -14,6 +15,7 @@ export default function App() {
         <>
             <IntroLoader />
             <CustomCursor />
+            <ScrollToTop />
             <Nav />
             <Routes>
                 <Route path="/" element={<Home />} />
