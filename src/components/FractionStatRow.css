@@ -1,0 +1,65 @@
+.fraction-stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    margin-top: var(--space-5);
+}
+
+.fraction-stat {
+    text-align: center;
+}
+
+.fraction-stat-number {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 28px;
+    color: var(--color-text);
+    margin: 0 0 8px;
+}
+
+.fraction-stat-body {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.4;
+    color: rgba(15, 11, 17, 0.7);
+    margin: 0 0 12px;
+}
+
+/* align-items: flex-end keeps every icon's feet on the same baseline,
+   independent of anything that might otherwise stretch them (e.g. one
+   icon's hover scale growing taller than its neighbors). */
+.fraction-stat-people {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 4px;
+}
+
+.fraction-stat-person {
+    flex-shrink: 0;
+    display: block;
+    transition: transform 0.2s ease;
+    transform-origin: bottom center;
+}
+
+.fraction-stat-person circle,
+.fraction-stat-person path {
+    fill: rgba(15, 11, 17, 0.16);
+}
+
+.fraction-stat-person--filled circle,
+.fraction-stat-person--filled path {
+    fill: var(--color-accent);
+}
+
+.fraction-stat:hover .fraction-stat-person--filled {
+    transform: scale(1.15);
+}
+
+@media (max-width: 480px) {
+    .fraction-stat-row {
+        grid-template-columns: 1fr;
+        gap: var(--space-5);
+    }
+}

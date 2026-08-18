@@ -1,0 +1,54 @@
+:root {
+  /* Color */
+  --color-bg: #fcfcfc;
+  --color-white: #ffffff;
+  --color-text: #0f0b11;
+  --color-black: #000000;
+  --color-muted: rgba(15, 11, 17, 0.45);
+  --color-accent: #a14fcc;
+  --color-nav-pill-bg: rgba(224, 224, 224, 0.4);
+  --color-overlay: rgba(34, 34, 34, 0.8);
+
+  --gradient-audrey: linear-gradient(
+    90deg,
+    #ae5f00,
+    #a14fcc,
+    #003ad9,
+    #00872d,
+    #7e7601
+  );
+
+  /* Same 5 brand colors, as a repeating conic gradient — used by
+     GlowingEffect's cursor-tracking border arc. */
+  --gradient-audrey-conic: repeating-conic-gradient(
+    from 236.84deg at 50% 50%,
+    #ae5f00 0%,
+    #a14fcc calc(25% / 5),
+    #003ad9 calc(50% / 5),
+    #00872d calc(75% / 5),
+    #ae5f00 calc(100% / 5)
+  );
+
+  /* Type */
+  --font-display: "IvyPresto Headline", serif;
+  --font-sans: "Suisse Int'l", "Inter", system-ui, Arial, sans-serif;
+  --font-mono: "Suisse Int'l Mono", "Space Mono", monospace;
+  --font-footer: "Space Mono", monospace;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 10px;
+  --space-4: 20px;
+  --space-5: 25px;
+  --space-6: 40px;
+  --space-7: 70px;
+  --space-8: 100px;
+  --space-9: 130px;
+
+  /* Radius */
+  --radius-dot: 90px;
+  --radius-pill: 19px;
+  --radius-chip: 4px;
+  --radius-btn: 11px;
+}

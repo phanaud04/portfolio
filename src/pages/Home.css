@@ -1,0 +1,23 @@
+.home-page {
+    position: relative;
+}
+
+/* Cursor-driven ASCII trail, dimmed way down so it reads as ambient
+   texture behind the hero/project grid rather than competing with them
+   (unlike the footer, where it's the main event). Fixed to the viewport
+   (not stretched to the full, potentially very tall, page) so the canvas
+   the effect redraws every frame stays a bounded size regardless of how
+   many project cards are loaded. */
+.home-ascii-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.16;
+    pointer-events: none;
+}
+
+.home-page .hero,
+.home-page #work {
+    position: relative;
+    z-index: 1;
+}

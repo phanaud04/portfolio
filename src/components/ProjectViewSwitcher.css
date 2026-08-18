@@ -1,0 +1,44 @@
+.view-switcher {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    width: fit-content;
+    padding: 4px;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.55),
+        rgba(255, 255, 255, 0.22)
+    );
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+.view-switcher-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: none;
+    border-radius: 999px;
+    color: rgba(15, 11, 17, 0.45);
+    cursor: pointer;
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease;
+}
+
+.view-switcher-btn:hover {
+    color: var(--color-black);
+}
+
+.view-switcher-btn.is-active {
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--color-accent);
+    box-shadow:
+        0 1px 3px rgba(15, 11, 17, 0.12),
+        inset 0 1px 1px rgba(255, 255, 255, 1);
+}

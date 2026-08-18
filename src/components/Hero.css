@@ -1,0 +1,37 @@
+.hero {
+    max-width: 1440px;
+    margin: 0 auto;
+    /* Top/bottom nudged up a tad from --space-9 (130px) / --space-2 (8px)
+       — more breathing room above the headline and below the tagline. */
+    padding: 145px var(--space-8) 24px;
+    text-align: center;
+}
+
+/* Centered as a block (not just its text) so it sits in the middle of
+   the hero section rather than pinned to the left edge. */
+.hero-inner {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hero-subheading {
+    margin: var(--space-5) 0 0;
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 21px;
+    color: rgba(15, 11, 17, 0.65);
+}
+
+@media (max-width: 860px) {
+    .hero {
+        padding: 145px var(--space-4) 24px;
+    }
+
+    /* Below 860px the grid drops to a single column (see ProjectGrid.css),
+       so a "card width" is the full content width, not a half split. */
+    .hero-inner {
+        max-width: 100%;
+    }
+}
+

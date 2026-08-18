@@ -1,0 +1,51 @@
+.view-credits {
+    position: relative;
+    display: inline-block;
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: help;
+    transition: opacity 0.2s ease;
+}
+
+.view-credits:hover,
+.view-credits:focus-visible {
+    opacity: 0.75;
+    outline: none;
+}
+
+.view-credits-tooltip {
+    position: absolute;
+    left: 0;
+    bottom: calc(100% + 10px);
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    max-width: 240px;
+    background: #0f0b11;
+    border-radius: 12px;
+    padding: 12px 14px;
+    opacity: 0;
+    transform: translateY(4px);
+    pointer-events: none;
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.view-credits:hover .view-credits-tooltip,
+.view-credits:focus-visible .view-credits-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.view-credits-line {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    white-space: normal;
+}

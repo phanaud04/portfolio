@@ -1,0 +1,45 @@
+.glowing-effect {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: 2;
+}
+
+.glowing-effect::after {
+    content: "";
+    position: absolute;
+    inset: calc(-1 * var(--glow-border-width));
+    border: var(--glow-border-width) solid transparent;
+    border-radius: inherit;
+    background: var(--gradient-audrey-conic);
+    background-attachment: fixed;
+    opacity: var(--active);
+    transition: opacity 0.3s ease;
+    -webkit-mask-clip: padding-box, border-box;
+    mask-clip: padding-box, border-box;
+    -webkit-mask-composite: intersect;
+    mask-composite: intersect;
+    -webkit-mask-image:
+        linear-gradient(#0000, #0000),
+        conic-gradient(
+            from calc((var(--start) - var(--glow-spread)) * 1deg),
+            transparent 0deg,
+            #fff,
+            transparent calc(var(--glow-spread) * 2deg)
+        );
+    mask-image:
+        linear-gradient(#0000, #0000),
+        conic-gradient(
+            from calc((var(--start) - var(--glow-spread)) * 1deg),
+            transparent 0deg,
+            #fff,
+            transparent calc(var(--glow-spread) * 2deg)
+        );
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .glowing-effect::after {
+        transition: none;
+    }
+}

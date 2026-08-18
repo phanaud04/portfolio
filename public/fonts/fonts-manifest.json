@@ -1,0 +1,335 @@
+[
+  {
+    "file": "Fonts/IvyPrestoHeadline/IvyPrestoHeadline-Thin.woff2",
+    "family": "IvyPresto Headline",
+    "subfamily": "Thin",
+    "postscriptName": "IvyPrestoHeadline-Thin",
+    "weight": 100,
+    "style": "normal",
+    "format": "woff2"
+  },
+  {
+    "file": "Fonts/IvyPrestoHeadline/IvyPrestoHeadline-Light.woff2",
+    "family": "IvyPresto Headline",
+    "subfamily": "Light",
+    "postscriptName": "IvyPrestoHeadline-Light",
+    "weight": 300,
+    "style": "normal",
+    "format": "woff2"
+  },
+  {
+    "file": "Fonts/SuisseIntl/SuisseIntl-UltraLightItalic.otf",
+    "family": "Suisse Int'l",
+    "subfamily": "UltraLight Italic",
+    "postscriptName": "SuisseIntl-UltraLightItalic",
+    "weight": 250,
+    "style": "italic",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseIntl/SuisseIntl-UltraLight.otf",
+    "family": "Suisse Int'l",
+    "subfamily": "UltraLight",
+    "postscriptName": "SuisseIntl-UltraLight",
+    "weight": 250,
+    "style": "normal",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseIntl/SuisseIntl-ThinItalic.otf",
+    "family": "Suisse Int'l",
+    "subfamily": "Thin Italic",
+    "postscriptName": "SuisseIntl-ThinItalic",
+    "weight": 275,
+    "style": "italic",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseIntl/SuisseIntl-Thin.otf",
+    "family": "Suisse Int'l",
+    "subfamily": "Thin",
+    "postscriptName": "SuisseIntl-Thin",
+    "weight": 275,
+    "style": "normal",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseIntl/SuisseIntl-LightItalic.otf",
+    "family": "Suisse Int'l",
+    "subfamily": "Light Italic",
+    "postscriptName": "SuisseIntl-LightItalic",
+    "weight": 300,
+    "style": "italic",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseIntl/SuisseIntl-Light.otf",
+    "family": "Suisse Int'l",
+    "subfamily": "Light",
+    "postscriptName": "SuisseIntl-Light",
+    "weight": 300,
+    "style": "normal",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseIntl/SuisseIntl-RegularItalic.otf",
+    "family": "Suisse Int'l",
+    "subfamily": "Italic",
+    "postscriptName": "SuisseIntl-Italic",
+    "weight": 400,
+    "style": "italic",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseIntl/SuisseIntl-Regular.otf",
+    "family": "Suisse Int'l",
+    "subfamily": "Regular",
+    "postscriptName": "SuisseIntl-Regular",
+    "weight": 400,
+    "style": "normal",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseIntl/SuisseIntl-BookItalic.otf",
+    "family": "Suisse Int'l",
+    "subfamily": "Book Italic",
+    "postscriptName": "SuisseIntl-BookItalic",
+    "weight": 450,
+    "style": "italic",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseIntl/SuisseIntl-Book.otf",
+    "family": "Suisse Int'l",
+    "subfamily": "Book",
+    "postscriptName": "SuisseIntl-Book",
+    "weight": 450,
+    "style": "normal",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseIntl/SuisseIntl-MediumItalic.otf",
+    "family": "Suisse Int'l",
+    "subfamily": "Medium Italic",
+    "postscriptName": "SuisseIntl-MediumItalic",
+    "weight": 500,
+    "style": "italic",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseIntl/SuisseIntl-Medium.otf",
+    "family": "Suisse Int'l",
+    "subfamily": "Medium",
+    "postscriptName": "SuisseIntl-Medium",
+    "weight": 500,
+    "style": "normal",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseIntl/SuisseIntl-SemiBoldItalic.otf",
+    "family": "Suisse Int'l",
+    "subfamily": "Semi Bold Italic",
+    "postscriptName": "SuisseIntl-SemiBoldItalic",
+    "weight": 600,
+    "style": "italic",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseIntl/SuisseIntl-SemiBold.otf",
+    "family": "Suisse Int'l",
+    "subfamily": "Semi Bold",
+    "postscriptName": "SuisseIntl-SemiBold",
+    "weight": 600,
+    "style": "normal",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseIntl/SuisseIntl-BoldItalic.otf",
+    "family": "Suisse Int'l",
+    "subfamily": "Bold Italic",
+    "postscriptName": "SuisseIntl-BoldItalic",
+    "weight": 700,
+    "style": "italic",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseIntl/SuisseIntl-Bold.otf",
+    "family": "Suisse Int'l",
+    "subfamily": "Bold",
+    "postscriptName": "SuisseIntl-Bold",
+    "weight": 700,
+    "style": "normal",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseIntl/SuisseIntl-BlackItalic.otf",
+    "family": "Suisse Int'l",
+    "subfamily": "Black Italic",
+    "postscriptName": "SuisseIntl-BlackItalic",
+    "weight": 900,
+    "style": "italic",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseIntl/SuisseIntl-Black.otf",
+    "family": "Suisse Int'l",
+    "subfamily": "Black",
+    "postscriptName": "SuisseIntl-Black",
+    "weight": 900,
+    "style": "normal",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseIntlMono/SuisseIntlMono-Thin.otf",
+    "family": "Suisse Int'l Mono",
+    "subfamily": "Thin",
+    "postscriptName": "SuisseIntlMono-Thin",
+    "weight": 275,
+    "style": "normal",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseIntlMono/SuisseIntlMono-Regular.otf",
+    "family": "Suisse Int'l Mono",
+    "subfamily": "Regular",
+    "postscriptName": "SuisseIntlMono",
+    "weight": 400,
+    "style": "normal",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseIntlMono/SuisseIntlMono-Bold.otf",
+    "family": "Suisse Int'l Mono",
+    "subfamily": "Bold",
+    "postscriptName": "SuisseIntlMono-Bold",
+    "weight": 700,
+    "style": "normal",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseScreen/SuisseScreen-ThinItalic.otf",
+    "family": "Suisse Screen",
+    "subfamily": "Thin Italic",
+    "postscriptName": "SuisseScreen-ThinItalic",
+    "weight": 275,
+    "style": "italic",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseScreen/SuisseScreen-Thin.otf",
+    "family": "Suisse Screen",
+    "subfamily": "Thin",
+    "postscriptName": "SuisseScreen-Thin",
+    "weight": 275,
+    "style": "normal",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseScreen/SuisseScreen-LightItalic.otf",
+    "family": "Suisse Screen",
+    "subfamily": "Light Italic",
+    "postscriptName": "SuisseScreen-LightItalic",
+    "weight": 300,
+    "style": "italic",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseScreen/SuisseScreen-Light.otf",
+    "family": "Suisse Screen",
+    "subfamily": "Light",
+    "postscriptName": "SuisseScreen-Light",
+    "weight": 300,
+    "style": "normal",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseScreen/SuisseScreen-MonitorItalic.otf",
+    "family": "Suisse Screen",
+    "subfamily": "Monitor Italic",
+    "postscriptName": "SuisseScreen-MonitorItalic",
+    "weight": 375,
+    "style": "italic",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseScreen/SuisseScreen-Monitor.otf",
+    "family": "Suisse Screen",
+    "subfamily": "Monitor",
+    "postscriptName": "SuisseScreen-Monitor",
+    "weight": 375,
+    "style": "normal",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseScreen/SuisseScreen-RegularItalic.otf",
+    "family": "Suisse Screen",
+    "subfamily": "Regular Italic",
+    "postscriptName": "SuisseScreen-RegularItalic",
+    "weight": 400,
+    "style": "italic",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseScreen/SuisseScreen-Regular.otf",
+    "family": "Suisse Screen",
+    "subfamily": "Regular",
+    "postscriptName": "SuisseScreen-Regular",
+    "weight": 400,
+    "style": "normal",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseScreen/SuisseScreen-MediumItalic.otf",
+    "family": "Suisse Screen",
+    "subfamily": "Medium Italic",
+    "postscriptName": "SuisseScreen-MediumItalic",
+    "weight": 500,
+    "style": "italic",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseScreen/SuisseScreen-Medium.otf",
+    "family": "Suisse Screen",
+    "subfamily": "Medium",
+    "postscriptName": "SuisseScreen-Medium",
+    "weight": 500,
+    "style": "normal",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseScreen/SuisseScreen-SemiBoldItalic.otf",
+    "family": "Suisse Screen",
+    "subfamily": "Semi Bold Italic",
+    "postscriptName": "SuisseScreen-SemiBoldItalic",
+    "weight": 600,
+    "style": "italic",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseScreen/SuisseScreen-SemiBold.otf",
+    "family": "Suisse Screen",
+    "subfamily": "Semi Bold",
+    "postscriptName": "SuisseScreen-SemiBold",
+    "weight": 600,
+    "style": "normal",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseScreen/SuisseScreen-BoldItalic.otf",
+    "family": "Suisse Screen",
+    "subfamily": "Bold Italic",
+    "postscriptName": "SuisseScreen-BoldItalic",
+    "weight": 700,
+    "style": "italic",
+    "format": "opentype"
+  },
+  {
+    "file": "Fonts/SuisseScreen/SuisseScreen-Bold.otf",
+    "family": "Suisse Screen",
+    "subfamily": "Bold",
+    "postscriptName": "SuisseScreen-Bold",
+    "weight": 700,
+    "style": "normal",
+    "format": "opentype"
+  }
+]

@@ -1,0 +1,12 @@
+.ascii-trail-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    /* Deliberately NOT pointer-events: none — it tracks mousemove directly
+       on the canvas element to drive the trail. Elements painted on top of
+       it (the footer's own text/links) still correctly receive clicks
+       first; this only affects which element sees hover in the empty
+       space around them. */
+}

@@ -1,0 +1,802 @@
+/* Shared layout/typography for case study pages (WSDOT, and future ones).
+   Typography tokens here mirror audrey-portfolio-style-guide.md Section 8 —
+   keep the two in sync if either changes.
+
+   Alignment model: .case-page is centered on the viewport (same center as
+   the floating nav pill). Every top-level block — hero row, hero image,
+   stat row, meta row, and each section — is independently set to
+   max-width:650px with margin:0 auto, so they all share the exact same
+   centered column regardless of what's inside them (text just fills
+   width:100%, images scale to fill it too). The section-jump nav is fixed
+   and lives entirely outside this column, so it never affects the
+   centering math. */
+
+.case-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 var(--space-6) var(--space-8);
+}
+
+.case-hero {
+    padding-top: 128px;
+}
+
+.case-hero-top {
+    max-width: 650px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-5);
+}
+
+.case-eyebrow {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    color: rgba(15, 11, 17, 0.45);
+    margin: 0 0 6px;
+}
+
+.case-hero-title {
+    font-family: var(--font-display);
+    font-weight: 100;
+    font-size: 25px;
+    line-height: 30px;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.case-hero-image {
+    max-width: 650px;
+    margin: var(--space-5) auto 0;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #eeeeec;
+}
+
+.case-hero-image img,
+.case-hero-image video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.case-meta-row {
+    max-width: 650px;
+    margin: var(--space-6) auto 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+    border: 1px solid rgba(15, 11, 17, 0.1);
+    border-radius: 18px;
+    padding: var(--space-5);
+}
+
+.case-meta-label {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: rgba(15, 11, 17, 0.45);
+    margin: 0 0 6px;
+}
+
+.case-meta-value {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 20px;
+    color: rgba(15, 11, 17, 0.85);
+    margin: 0;
+}
+
+.case-meta-value a {
+    text-decoration: underline;
+}
+
+/* Inline "here" link callouts inside body copy — a soft highlight so the
+   clickable word reads as a link at a glance, not just underlined text. */
+.case-link-highlight {
+    color: var(--color-accent);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    background: rgba(161, 79, 204, 0.12);
+    border-radius: 4px;
+    padding: 1px 4px;
+    transition: background-color 0.2s ease;
+}
+
+.case-link-highlight:hover {
+    background: rgba(161, 79, 204, 0.22);
+}
+
+.case-stats {
+    max-width: 650px;
+    margin: var(--space-8) auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+}
+
+.case-stat {
+    background: #fafaf8;
+    border: 1px solid rgba(15, 11, 17, 0.08);
+    border-radius: 16px;
+    padding: var(--space-4);
+}
+
+.case-stat-number {
+    font-family: var(--font-display);
+    font-weight: 100;
+    font-size: 32px;
+    color: var(--color-accent);
+    margin: 0 0 4px;
+}
+
+.case-stat-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    color: rgba(15, 11, 17, 0.55);
+    margin: 0;
+}
+
+.case-section {
+    max-width: 650px;
+    margin: var(--space-8) auto 0;
+}
+
+.case-block {
+    margin-bottom: var(--space-6);
+}
+
+.case-block:last-child {
+    margin-bottom: 0;
+}
+
+.case-heading {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 23px;
+    line-height: 28px;
+    color: var(--color-text);
+    margin: 0 0 var(--space-3);
+}
+
+.case-body {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21.6px;
+    color: rgba(15, 11, 17, 0.82);
+    margin: 0;
+}
+
+.case-image {
+    margin-top: var(--space-5);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.case-image img,
+.case-image video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.case-image--framed {
+    border: 3px solid var(--color-accent);
+    border-radius: 28px;
+    background: var(--color-accent);
+}
+
+.case-image--framed img {
+    border-radius: 20px;
+}
+
+.case-image--sharp {
+    border-radius: 0;
+}
+
+/* Colored backdrop behind the outcome video: spans the same width as the
+   text above it, while its own height comes from its single flex child
+   (the inset, narrower video) rather than a fixed value. */
+.case-video-panel {
+    margin-top: var(--space-5);
+    background: #ecebe8;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.case-video-panel--dark {
+    background: #000;
+}
+
+.case-video-panel video {
+    width: 50%;
+    height: auto;
+    display: block;
+}
+
+.case-quote-box {
+    background: #307860;
+    border-radius: 20px;
+    padding: var(--space-6) var(--space-5);
+    text-align: center;
+}
+
+.case-quote-box .case-eyebrow {
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+}
+
+.case-quote-box p {
+    font-family: var(--font-display);
+    font-weight: 100;
+    font-size: 26px;
+    line-height: 32px;
+    color: #fff;
+    margin: 0;
+}
+
+.case-quote-box--pink {
+    background: #d40164;
+}
+
+.case-quote-box--accent {
+    background: var(--color-accent);
+}
+
+.case-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+}
+
+.case-feature-card {
+    border-radius: 14px;
+    padding: var(--space-4);
+    background: #f2f2f0;
+}
+
+.case-feature-card:nth-child(4n + 1) {
+    background: rgba(174, 95, 0, 0.08);
+}
+
+.case-feature-card:nth-child(4n + 2) {
+    background: rgba(0, 135, 45, 0.08);
+}
+
+.case-feature-card:nth-child(4n + 3) {
+    background: rgba(0, 58, 217, 0.07);
+}
+
+.case-feature-card:nth-child(4n + 4) {
+    background: rgba(161, 79, 204, 0.08);
+}
+
+.case-feature-card-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 15px;
+    margin: 0 0 var(--space-2);
+}
+
+.case-feature-card-title .star {
+    font-size: 13px;
+}
+
+.case-feature-card p {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(15, 11, 17, 0.7);
+    margin: 0;
+}
+
+.case-takeaways {
+    list-style: none;
+    margin: var(--space-5) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.case-takeaways li {
+    display: flex;
+    gap: var(--space-4);
+    background: #fafaf8;
+    border: 1px solid rgba(15, 11, 17, 0.08);
+    border-radius: 16px;
+    padding: var(--space-4) var(--space-5);
+}
+
+.case-takeaways .num {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--color-accent);
+    flex-shrink: 0;
+    padding-top: 2px;
+}
+
+.case-takeaways .quote {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--color-text);
+    margin: 0 0 4px;
+}
+
+.case-takeaways .support {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.5;
+    color: rgba(15, 11, 17, 0.65);
+    margin: 0;
+}
+
+/* ── Microanimations ──
+   Reveal-on-scroll: JS (see WsdotCaseStudy.tsx) adds "case-reveal-ready" to
+   each block up front, then "case-reveal-visible" the first time it enters
+   the viewport. Content starts and stays fully visible if that JS never
+   runs (progressive enhancement), so this is additive polish, not a
+   requirement for the page to render correctly. */
+.case-reveal-ready {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+        opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.case-reveal-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* small per-item stagger so grouped tiles cascade in rather than popping
+   together as one flat block */
+.case-stats .case-stat:nth-child(2) {
+    transition-delay: 0.08s;
+}
+.case-stats .case-stat:nth-child(3) {
+    transition-delay: 0.16s;
+}
+
+.case-feature-grid .case-feature-card:nth-child(2) {
+    transition-delay: 0.08s;
+}
+.case-feature-grid .case-feature-card:nth-child(3) {
+    transition-delay: 0.16s;
+}
+.case-feature-grid .case-feature-card:nth-child(4) {
+    transition-delay: 0.24s;
+}
+
+.case-takeaways li:nth-child(2) {
+    transition-delay: 0.08s;
+}
+.case-takeaways li:nth-child(3) {
+    transition-delay: 0.16s;
+}
+
+/* hover polish on inline media — a gentle zoom, clipped by the image's own
+   rounded corners (overflow: hidden on .case-image) */
+.case-image img,
+.case-image video,
+.case-hero-image img,
+.case-hero-image video {
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.case-image:hover img,
+.case-image:hover video,
+.case-hero-image:hover img,
+.case-hero-image:hover video {
+    transform: scale(1.025);
+}
+
+/* feature cards lift on hover */
+.case-feature-card {
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.case-feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px -12px rgba(15, 11, 17, 0.18);
+}
+
+/* stat tiles lift slightly on hover */
+.case-stat {
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.case-stat:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px -12px rgba(15, 11, 17, 0.15);
+}
+
+/* takeaway cards nudge right on hover, echoing their reading order */
+.case-takeaways li {
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.case-takeaways li:hover {
+    transform: translateX(4px);
+    box-shadow: 0 8px 18px -10px rgba(15, 11, 17, 0.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .case-reveal-ready {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .case-image img,
+    .case-image video,
+    .case-hero-image img,
+    .case-hero-image video,
+    .case-feature-card,
+    .case-stat,
+    .case-takeaways li {
+        transition: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .case-page {
+        padding: 0 var(--space-4);
+    }
+
+    .case-hero-top {
+        flex-direction: column;
+    }
+
+    .case-meta-row,
+    .case-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .case-meta-row,
+    .case-stats,
+    .case-feature-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Two-up media pairing — used where a section has two companion
+   images/videos meant to sit side by side rather than stack (e.g. a pair
+   of solution preview clips, or two research graphics). Mirrors
+   .case-image's rounding/overflow but as a 2-col grid. */
+.case-media-row {
+    margin-top: var(--space-5);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+    align-items: center;
+}
+
+.case-media-row .case-image {
+    margin-top: 0;
+}
+
+.case-media-row .case-list {
+    margin-top: 0;
+}
+
+/* Highlight box around a bullet list sitting next to media in a
+   .case-media-row — gives the callout its own visual weight instead of
+   floating as bare text beside the image/video. */
+.case-list-panel {
+    background: #f7f6f4;
+    border: 1px solid rgba(15, 11, 17, 0.08);
+    border-radius: 16px;
+    padding: var(--space-4);
+}
+
+.case-list-panel .case-list {
+    margin-top: 0;
+}
+
+/* Lightweight CSS iPhone frame for wrapping screen-recording videos — a
+   thin brushed-titanium/silver bezel, dynamic island, and a couple of
+   side buttons so the clip reads as an on-device demo rather than a bare
+   rectangle. Bezel is intentionally thin (proportional to a real phone's
+   ~3% edge) rather than a heavy dark border. */
+.iphone-frame {
+    position: relative;
+    background: linear-gradient(
+        135deg,
+        #f1f2f4 0%,
+        #cdd0d4 26%,
+        #f4f5f6 48%,
+        #b0b3b8 74%,
+        #e6e7e9 100%
+    );
+    border-radius: 44px;
+    padding: 7px;
+    box-shadow:
+        inset 0 0 0 1px rgba(0, 0, 0, 0.16),
+        inset 0 1px 1px rgba(255, 255, 255, 0.8),
+        0 20px 40px -22px rgba(15, 11, 17, 0.35);
+}
+
+.iphone-frame video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 38px;
+    background: #000;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+}
+
+.iphone-frame-island {
+    position: absolute;
+    top: 17px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28%;
+    max-width: 78px;
+    height: 19px;
+    background: #000;
+    border-radius: 14px;
+    z-index: 2;
+}
+
+.iphone-frame-btn {
+    position: absolute;
+    width: 2px;
+    background: linear-gradient(90deg, #86898f 0%, #a5a8ad 100%);
+    box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.2);
+}
+
+.iphone-frame-btn--action {
+    left: -2px;
+    top: 15%;
+    height: 4.5%;
+    border-radius: 1.5px 0 0 1.5px;
+    background: linear-gradient(270deg, #86898f 0%, #a5a8ad 100%);
+}
+
+.iphone-frame-btn--vol-up {
+    left: -2px;
+    top: 21%;
+    height: 7%;
+    border-radius: 1.5px 0 0 1.5px;
+    background: linear-gradient(270deg, #86898f 0%, #a5a8ad 100%);
+}
+
+.iphone-frame-btn--vol-down {
+    left: -2px;
+    top: 29%;
+    height: 7%;
+    border-radius: 1.5px 0 0 1.5px;
+    background: linear-gradient(270deg, #86898f 0%, #a5a8ad 100%);
+}
+
+.iphone-frame-btn--power {
+    right: -2px;
+    top: 21%;
+    height: 8.5%;
+    border-radius: 0 1.5px 1.5px 0;
+}
+
+.iphone-frame-btn--camera {
+    right: -2px;
+    top: 31.5%;
+    height: 3.5%;
+    border-radius: 0 1.5px 1.5px 0;
+}
+
+/* Before/after comparison cards — mirrors the source before_after_discovery.html
+   comparison layout: bordered two-col grid, no fill, centered screenshot,
+   numbered colored tag, headline, then a narrow left-aligned list. */
+.case-compare-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    margin-top: var(--space-5);
+    border: 1px solid rgba(15, 11, 17, 0.12);
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.case-compare-card {
+    padding: var(--space-5) var(--space-4) var(--space-6);
+    text-align: center;
+}
+
+.case-compare-card--after {
+    border-left: 1px solid rgba(15, 11, 17, 0.12);
+}
+
+.case-compare-card img {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+    display: block;
+    margin: 0 auto var(--space-4);
+}
+
+.case-compare-tag {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 0 0 var(--space-3);
+}
+
+.case-compare-tag .num {
+    font-size: 16px;
+}
+
+.case-compare-card--before .case-compare-tag {
+    color: #ff1493;
+}
+
+.case-compare-card--after .case-compare-tag {
+    color: #0066ff;
+}
+
+.case-compare-headline {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--color-text);
+    margin: 0 0 var(--space-3);
+}
+
+.case-compare-card .case-list {
+    max-width: 30ch;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.case-list {
+    list-style: none;
+    margin: var(--space-4) 0 0;
+    padding: 0;
+}
+
+.case-list li {
+    position: relative;
+    padding-left: var(--space-4);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(15, 11, 17, 0.7);
+    margin-bottom: var(--space-2);
+}
+
+.case-list li::before {
+    content: "\00b7";
+    position: absolute;
+    left: 2px;
+    top: 0;
+    font-weight: 700;
+}
+
+.case-list li:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 480px) {
+    .case-media-row,
+    .case-compare-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Next project ──
+   A single full-bleed-within-the-column link to the sibling case study,
+   closing out the page. Dark backdrop (matching .case-quote-box's use of
+   solid color blocks) with the hero clip dimmed underneath the title so
+   text stays legible regardless of what's playing. */
+.case-next-project {
+    display: block;
+    position: relative;
+    max-width: 650px;
+    margin: var(--space-9) auto 0;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #0f0b11;
+    text-decoration: none;
+    color: inherit;
+}
+
+.case-next-project-media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+}
+
+.case-next-project-media video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    filter: brightness(0.62);
+    transition:
+        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.4s ease;
+}
+
+.case-next-project:hover .case-next-project-media video {
+    transform: scale(1.05);
+    filter: brightness(0.5);
+}
+
+.case-next-project-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: var(--space-6);
+    pointer-events: none;
+}
+
+.case-next-project-text .case-eyebrow {
+    color: rgba(255, 255, 255, 0.65);
+    margin: 0 0 4px;
+}
+
+.case-next-project-title {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 40px;
+    color: #fff;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.case-next-project-arrow {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.case-next-project:hover .case-next-project-arrow {
+    transform: translateX(8px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .case-next-project-media video,
+    .case-next-project-arrow {
+        transition: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .case-next-project-title {
+        font-size: 30px;
+    }
+}

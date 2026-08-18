@@ -1,0 +1,223 @@
+.play-page {
+    position: relative;
+    max-width: 1560px;
+    margin: 0 auto;
+    padding: 128px var(--space-8) var(--space-9);
+}
+
+/* Cursor-driven ASCII trail, dimmed way down so it reads as ambient
+   texture behind the grid rather than competing with it (unlike the
+   footer, where it's the main event). Fixed to the viewport (not
+   stretched to the full page, which can run to several screens of
+   masonry) so the canvas the effect redraws every frame stays a bounded
+   size regardless of how long the grid gets. */
+.play-ascii-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.16;
+    pointer-events: none;
+}
+
+.play-toolbar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--space-6);
+}
+
+/* ── 3-column masonry ──
+   One continuous set of 3 independent flex columns (no spans, no measured
+   row heights — just normal block stacking, so items can never overlap).
+   Gaps are kept tight and identical in both directions so the grid reads
+   as one evenly-spaced mix instead of uneven gutters. */
+
+.play-cols {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: var(--space-3);
+}
+
+.play-col {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+/* Item sizing — each tile is shuffled into a size bucket (see Play.tsx) so
+   the columns read as a mixed, masonry-like set rather than a uniform
+   grid, while staying close enough in width that the gaps around them
+   stay visually even. Centered within its column so the size change
+   reads intentional. */
+.play-item--s {
+    max-width: 88%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.play-item--m {
+    max-width: 96%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.play-item--l {
+    max-width: 100%;
+}
+
+.play-item {
+    position: relative;
+    margin: 0;
+}
+
+.play-item--clickable {
+    cursor: zoom-in;
+}
+
+/* Wraps just the media (not the caption below) so the glow/gradient hover
+   effect is scoped to the image itself. */
+.play-item-media {
+    position: relative;
+}
+
+.play-thumb-media {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #eee;
+}
+
+/* Static stand-in for PDF items — a plain document-icon card instead of an
+   embedded/live preview, so it reads as an image thumbnail like everything
+   else in the grid. */
+.play-thumb-pdf {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    padding: var(--space-4);
+    background: #f2f1ed;
+    border: 1px solid rgba(15, 11, 17, 0.1);
+    color: rgba(15, 11, 17, 0.4);
+    text-align: center;
+}
+
+.play-thumb-pdf-name {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    color: rgba(15, 11, 17, 0.55);
+}
+
+/* Category caption — collapsed by default, pushes the layout down to
+   reveal itself on hover instead of overlaying the image (mirrors
+   .project-card-details in ProjectGrid.css). */
+.play-item-details {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
+}
+
+.play-item:hover .play-item-details {
+    grid-template-rows: 1fr;
+}
+
+.play-item-details-inner {
+    overflow: hidden;
+    padding-top: 0;
+}
+
+.play-item:hover .play-item-details-inner {
+    padding-top: var(--space-2);
+}
+
+.play-item-details-inner {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: rgba(15, 11, 17, 0.5);
+}
+
+/* ── Lightbox ── */
+
+.play-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    background: rgba(10, 7, 12, 0.88);
+    cursor: zoom-out;
+}
+
+.play-lightbox-media {
+    max-width: 100%;
+    max-height: 82vh;
+    display: block;
+    cursor: default;
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6);
+}
+
+.play-lightbox-caption {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.play-lightbox-close {
+    position: absolute;
+    top: var(--space-5);
+    right: var(--space-5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: var(--color-white);
+    transition:
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.play-lightbox-close:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+@media (max-width: 1100px) {
+    .play-page {
+        padding: 108px var(--space-6) var(--space-8);
+    }
+}
+
+@media (max-width: 720px) {
+    .play-page {
+        padding: 108px var(--space-4) var(--space-7);
+    }
+
+    .play-cols {
+        gap: var(--space-3);
+    }
+
+    .play-col {
+        gap: var(--space-3);
+    }
+}

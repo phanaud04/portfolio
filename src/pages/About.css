@@ -1,0 +1,207 @@
+.about-page {
+    position: relative;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 128px var(--space-6) var(--space-9);
+}
+
+/* Cursor-driven ASCII trail, dimmed way down so it reads as ambient
+   texture behind the text/photos rather than competing with them (unlike
+   the footer, where it's the main event). */
+.about-ascii-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.16;
+    pointer-events: none;
+}
+
+.about-layout {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-7);
+}
+
+/* ── Text column ── */
+
+.about-text-col {
+    flex: 0 0 420px;
+    max-width: 420px;
+    padding-top: var(--space-5);
+}
+
+.about-title-wrap {
+    display: block;
+    width: 100%;
+    margin-bottom: var(--space-5);
+}
+
+.about-body {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.55;
+    color: rgba(15, 11, 17, 0.82);
+    margin: 0 0 var(--space-4);
+}
+
+.about-social-icons {
+    display: flex;
+    gap: var(--space-3);
+    margin-top: var(--space-3);
+}
+
+.about-social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(15, 11, 17, 0.15);
+    color: var(--color-text);
+    transition:
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.about-social-icons svg {
+    width: 16px;
+    height: 16px;
+}
+
+.about-social-icons a:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    transform: translateY(-2px);
+}
+
+/* ── Photo column ── */
+
+/* Two independent columns (see PHOTO_COLUMNS in About.tsx), offset from
+   each other and given generous gaps — photos scatter across a loose
+   corkboard instead of locking into a tidy 2x3 grid. */
+.about-photo-col {
+    flex: 1;
+    display: flex;
+    gap: 48px;
+    padding: 24px;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.about-photo-column {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.about-photo-column:nth-child(2) {
+    margin-top: 84px;
+}
+
+.scrap-photo {
+    position: relative;
+    background: var(--color-white);
+    padding: 10px 10px 34px;
+    border-radius: 3px;
+    margin: 0;
+    box-shadow: 0 14px 26px -10px rgba(15, 11, 17, 0.25);
+    transform: rotate(var(--rot, 0deg));
+    transition:
+        transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.3s ease;
+    cursor: default;
+}
+
+.scrap-photo:hover {
+    transform: rotate(0deg) translateY(-5px) scale(1.08);
+    box-shadow: 0 16px 26px -12px rgba(15, 11, 17, 0.32);
+    z-index: 4;
+}
+
+.scrap-photo-frame {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: 2px;
+    overflow: hidden;
+    background: #eee;
+}
+
+.scrap-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scrap-photo:hover .scrap-photo-frame img {
+    transform: scale(1.06);
+}
+
+.scrap-caption {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.32;
+    color: rgba(15, 11, 17, 0.75);
+}
+
+.scrap-tape {
+    position: absolute;
+    width: 42px;
+    height: 17px;
+    top: -9px;
+    left: 50%;
+    border-radius: 2px;
+    opacity: 0.85;
+    box-shadow: 0 2px 4px rgba(15, 11, 17, 0.12);
+}
+
+.scrap-tape--0 {
+    transform: translateX(-50%) rotate(-6deg);
+}
+
+.scrap-tape--1 {
+    transform: translateX(-50%) rotate(5deg);
+}
+
+@media (max-width: 860px) {
+    .about-layout {
+        flex-direction: column;
+    }
+
+    .about-text-col {
+        flex: none;
+        max-width: none;
+    }
+}
+
+@media (max-width: 720px) {
+    .about-page {
+        padding: 108px var(--space-4) var(--space-7);
+    }
+
+    .about-photo-col {
+        gap: 24px;
+        padding: 12px;
+    }
+
+    .about-photo-column {
+        gap: 36px;
+    }
+
+    .about-photo-column:nth-child(2) {
+        margin-top: 44px;
+    }
+}

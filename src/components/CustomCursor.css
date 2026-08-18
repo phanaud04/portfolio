@@ -1,0 +1,66 @@
+.custom-cursor {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 9999;
+    will-change: transform;
+    transition:
+        width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        border-radius 0.2s ease,
+        padding 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.custom-cursor--pill {
+    width: auto;
+    height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+}
+
+/* Longer, wrapping labels (e.g. Vesta's "still in process" note) — a
+   fixed taller height so it still animates smoothly from the resting dot,
+   instead of .custom-cursor--pill's single-line auto width. */
+.custom-cursor--note {
+    height: auto;
+    min-height: 34px;
+    width: 200px;
+    padding: 10px 16px;
+    border-radius: 18px;
+    white-space: normal;
+    text-align: center;
+}
+
+.custom-cursor-label {
+    opacity: 0;
+    transform: scale(0.85);
+    color: var(--color-white);
+    font-family: var(--font-mono);
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+    transition:
+        opacity 0.15s ease 0.05s,
+        transform 0.15s ease 0.05s;
+}
+
+.custom-cursor--pill .custom-cursor-label {
+    opacity: 1;
+    transform: scale(1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .custom-cursor {
+        display: flex;
+    }
+}

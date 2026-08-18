@@ -1,0 +1,86 @@
+.gradient-cta-wrap {
+    position: relative;
+    display: inline-flex;
+    flex-shrink: 0;
+}
+
+.gradient-cta {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: #0b0b0b;
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* thin gradient stroke ring — a crisp 1.5px line, no blur. Wider-than-100%
+   background so it has somewhere to travel to on hover. */
+.gradient-cta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    padding: 2.5px;
+    background: var(--gradient-audrey);
+    background-size: 260% 100%;
+    background-position: 0% 50%;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    transition: background-position 0.5s ease;
+}
+
+/* colors shift along the ring on hover, instead of just glowing brighter */
+.gradient-cta-wrap:hover .gradient-cta::before {
+    background-position: 100% 50%;
+}
+
+/* light-refraction shine sweep on hover — subtle, clipped to the pill */
+.gradient-cta-shine {
+    position: absolute;
+    top: -20%;
+    left: -60%;
+    width: 30%;
+    height: 140%;
+    background: linear-gradient(
+        115deg,
+        transparent,
+        rgba(255, 255, 255, 0.28),
+        transparent
+    );
+    transform: skewX(-20deg);
+    transition: left 0.65s ease;
+    pointer-events: none;
+}
+
+.gradient-cta-wrap:hover .gradient-cta-shine {
+    left: 130%;
+}
+
+.gradient-cta-label {
+    position: relative;
+    z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gradient-cta::before {
+        transition: none;
+    }
+
+    .gradient-cta-shine {
+        display: none;
+    }
+}

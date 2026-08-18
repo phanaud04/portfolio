@@ -1,0 +1,122 @@
+.site-footer {
+    position: relative;
+    overflow: hidden;
+    margin-top: var(--space-9);
+    background: #fbf5e7;
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.site-footer-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: var(--space-6) var(--space-7);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+}
+
+.site-footer-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 42px;
+    line-height: 1.12;
+    color: var(--color-accent);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+}
+
+.site-footer-title span {
+    display: block;
+}
+
+.site-footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-4);
+    flex-shrink: 0;
+}
+
+.site-footer-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-5);
+}
+
+/* Plain word links — no pill/button chrome. An underline grows in from
+   the right on hover, matching the case-study nav's directional-reveal
+   pattern but kept here since this is the one spot on the site where an
+   underline-on-hover was explicitly asked for. */
+.site-footer-link {
+    position: relative;
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding-bottom: 3px;
+    transition: color 0.2s ease;
+}
+
+.site-footer-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: 0;
+    height: 1px;
+    background: currentColor;
+    transition: right 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-footer-link:hover {
+    color: var(--color-accent);
+}
+
+.site-footer-link:hover::after {
+    right: 0;
+}
+
+.site-footer-meta {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    color: rgba(15, 11, 17, 0.5);
+}
+
+@media (max-width: 720px) {
+    .site-footer-inner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: var(--space-5);
+    }
+
+    .site-footer-title {
+        font-size: 30px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .site-footer-right {
+        align-items: center;
+    }
+
+    .site-footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
