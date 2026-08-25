@@ -47,6 +47,37 @@
     margin: 0 0 var(--space-4);
 }
 
+.about-body--lead {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--color-text);
+}
+
+/* Groups each remaining bit of bio under its own small eyebrow label
+   (Education / Outside of design / Let's connect) instead of a run of
+   undifferentiated paragraphs — gives the reader something to scan. */
+.about-body-group {
+    margin-bottom: var(--space-5);
+}
+
+.about-body-group:last-child {
+    margin-bottom: 0;
+}
+
+.about-body-group .about-body {
+    margin-bottom: 0;
+}
+
+.about-section-label {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin: 0 0 var(--space-2);
+}
+
 .about-social-icons {
     display: flex;
     gap: var(--space-3);
@@ -176,6 +207,74 @@
     transform: translateX(-50%) rotate(5deg);
 }
 
+/* ── Skills & tools ── */
+
+.about-skills-section {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: var(--space-7);
+    margin-top: var(--space-8);
+    padding-top: var(--space-7);
+    border-top: 1px solid rgba(15, 11, 17, 0.1);
+}
+
+.about-skills-col {
+    flex: 2;
+    min-width: 0;
+}
+
+.about-tools-col {
+    flex: 1;
+    min-width: 200px;
+}
+
+.about-skills-col .about-section-label,
+.about-tools-col .about-section-label {
+    margin-bottom: var(--space-4);
+}
+
+.skill-category {
+    margin-bottom: var(--space-5);
+}
+
+.skill-category:last-child {
+    margin-bottom: 0;
+}
+
+.skill-category-label {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--color-text);
+    margin: 0 0 var(--space-2);
+}
+
+.skill-chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.skill-chip {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1;
+    color: rgba(15, 11, 17, 0.75);
+    background: rgba(161, 79, 204, 0.08);
+    border: 1px solid rgba(161, 79, 204, 0.22);
+    border-radius: var(--radius-chip);
+    padding: var(--space-2) var(--space-2);
+    white-space: nowrap;
+}
+
+.skill-chip--tool {
+    color: var(--color-white);
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
 @media (max-width: 860px) {
     .about-layout {
         flex-direction: column;
@@ -184,6 +283,11 @@
     .about-text-col {
         flex: none;
         max-width: none;
+    }
+
+    .about-skills-section {
+        flex-direction: column;
+        gap: var(--space-6);
     }
 }
 

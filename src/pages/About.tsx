@@ -77,6 +77,102 @@ const PHOTO_COLUMNS = [
     PHOTOS.filter((_, i) => i % 2 === 1),
 ]
 
+const SKILL_CATEGORIES = [
+    {
+        label: "UX/UI & Product Design",
+        items: [
+            "Design thinking",
+            "Problem framing",
+            "Product sense",
+            "User research (qual + quant)",
+            "Usability testing",
+            "Heuristic evaluation",
+            "User flows",
+            "Journey mapping",
+            "Wireframing",
+            "Rapid prototyping",
+            "Information architecture",
+            "Interaction design",
+            "Design systems",
+            "Responsive/adaptive design",
+            "Accessibility (WCAG)",
+            "Content strategy",
+            "Service design",
+            "Competitive analysis",
+            "Stakeholder alignment",
+            "Design critique/presentation",
+        ],
+    },
+    {
+        label: "Visual & Graphic Design",
+        items: [
+            "Typography",
+            "Color theory",
+            "Layout & composition",
+            "Branding/identity systems",
+            "Illustration",
+            "Iconography",
+            "Marketing collateral",
+            "Print + digital design",
+            "Micro-interaction/motion awareness",
+        ],
+    },
+    {
+        label: "Front-End Development",
+        items: [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Java",
+            "React",
+            "Git/GitHub",
+            "API integration",
+            "Responsive coding",
+            "Deployment (Vercel)",
+            "Debugging",
+        ],
+    },
+    {
+        label: "AI-Forward Workflow",
+        items: [
+            "AI-assisted prototyping",
+            "AI-assisted development",
+            "Prompt engineering",
+            "Workflow/process optimization with AI tools",
+            "Translating design intent into AI-generated code",
+        ],
+    },
+    {
+        label: "Soft Skills",
+        items: [
+            "Cross-functional collaboration",
+            "Storytelling",
+            "User empathy",
+            "Adaptability",
+            "Self-directed learning",
+            "Ownership",
+            "Comfort with ambiguity",
+            "Curiosity",
+            "Resilience",
+            "Prioritization under deadline pressure",
+            "Critical thinking",
+            "Giving/receiving feedback",
+            "Stakeholder management",
+            "Initiative",
+            "Resourcefulness",
+            "Conflict navigation",
+            "Growth mindset",
+            "Attention to detail",
+            "Systems thinking",
+            "Client relationship management",
+            "Negotiation",
+            "Mentorship",
+        ],
+    },
+]
+
+const TOOLS = ["Figma", "VS Code / Cursor", "Claude / ChatGPT", "Adobe Creative Suite"]
+
 export default function About() {
     return (
         <main className="about-page">
@@ -90,50 +186,63 @@ export default function About() {
                         <AudreyHeadline words={ABOUT_HEADLINE_WORDS} align="left" />
                     </div>
 
-                    <p className="about-body">
+                    <p className="about-body about-body--lead">
                         I'm an interdisciplinary designer working in spaces of
                         innovative technology and visual art. I create products
                         that focus on functional systems and expressive design.
                     </p>
-                    <p className="about-body">
-                        I recently just graduated at the University of Washington
-                        with a Bachelor's of Science in Informatics.
-                    </p>
-                    <p className="about-body">
-                        Outside of design, I love experimenting with AI, going on
-                        hikes, and trying new restaurants and cuisines!
-                    </p>
-                    <p className="about-body">
-                        Feel free to reach out! I'd love to chat about all things
-                        design and become friends :)
-                    </p>
 
-                    <div className="about-social-icons">
-                        <a
-                            href={`mailto:${CONTACT.email}`}
-                            aria-label="Email Audrey"
-                            data-cursor-label="email"
-                        >
-                            <EmailIcon />
-                        </a>
-                        <a
-                            href={CONTACT.linkedinHref}
-                            target="_blank"
-                            rel="noreferrer noopener"
-                            aria-label="Audrey's LinkedIn"
-                            data-cursor-label="linkedin"
-                        >
-                            <LinkedInIcon />
-                        </a>
-                        <a
-                            href={CONTACT.resumeHref}
-                            target="_blank"
-                            rel="noreferrer noopener"
-                            aria-label="Audrey's resume"
-                            data-cursor-label="resume"
-                        >
-                            <ResumeIcon />
-                        </a>
+                    <div className="about-body-group">
+                        <p className="about-section-label">Education</p>
+                        <p className="about-body">
+                            I recently just graduated at the University of
+                            Washington with a Bachelor's of Science in
+                            Informatics.
+                        </p>
+                    </div>
+
+                    <div className="about-body-group">
+                        <p className="about-section-label">Outside of design</p>
+                        <p className="about-body">
+                            I love experimenting with AI, going on hikes, and
+                            trying new restaurants and cuisines!
+                        </p>
+                    </div>
+
+                    <div className="about-body-group">
+                        <p className="about-section-label">Let's connect</p>
+                        <p className="about-body">
+                            Feel free to reach out! I'd love to chat about all
+                            things design and become friends :)
+                        </p>
+
+                        <div className="about-social-icons">
+                            <a
+                                href={`mailto:${CONTACT.email}`}
+                                aria-label="Email Audrey"
+                                data-cursor-label="email"
+                            >
+                                <EmailIcon />
+                            </a>
+                            <a
+                                href={CONTACT.linkedinHref}
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                aria-label="Audrey's LinkedIn"
+                                data-cursor-label="linkedin"
+                            >
+                                <LinkedInIcon />
+                            </a>
+                            <a
+                                href={CONTACT.resumeHref}
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                aria-label="Audrey's resume"
+                                data-cursor-label="resume"
+                            >
+                                <ResumeIcon />
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -173,6 +282,40 @@ export default function About() {
                     ))}
                 </div>
             </div>
+
+            <section className="about-skills-section">
+                <div className="about-skills-col">
+                    <p className="about-section-label">Skills</p>
+                    {SKILL_CATEGORIES.map((category) => (
+                        <div className="skill-category" key={category.label}>
+                            <p className="skill-category-label">
+                                {category.label}
+                            </p>
+                            <div className="skill-chip-list">
+                                {category.items.map((item) => (
+                                    <span className="skill-chip" key={item}>
+                                        {item}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="about-tools-col">
+                    <p className="about-section-label">Tools</p>
+                    <div className="skill-chip-list">
+                        {TOOLS.map((tool) => (
+                            <span
+                                className="skill-chip skill-chip--tool"
+                                key={tool}
+                            >
+                                {tool}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </section>
 
             <AudreyFriend />
         </main>
