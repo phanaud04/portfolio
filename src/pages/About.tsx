@@ -77,54 +77,15 @@ const PHOTO_COLUMNS = [
     PHOTOS.filter((_, i) => i % 2 === 1),
 ]
 
-const SKILL_CATEGORIES = [
-    {
-        label: "UX/UI & Product Design",
-        items: [
-            "Design thinking",
-            "User research",
-            "Usability testing",
-            "Prototyping",
-            "Design systems",
-        ],
-    },
-    {
-        label: "Visual & Graphic Design",
-        items: [
-            "Typography",
-            "Color theory",
-            "Layout & composition",
-            "Branding/identity",
-            "Illustration",
-        ],
-    },
-    {
-        label: "Front-End Development",
-        items: ["HTML", "CSS", "JavaScript", "React", "Git/GitHub"],
-    },
-    {
-        label: "AI-Forward Workflow",
-        items: [
-            "AI-assisted prototyping",
-            "AI-assisted development",
-            "Prompt engineering",
-            "Workflow optimization",
-            "AI-generated code",
-        ],
-    },
-    {
-        label: "Soft Skills",
-        items: [
-            "Cross-functional collaboration",
-            "Storytelling",
-            "Adaptability",
-            "Critical thinking",
-            "Systems thinking",
-        ],
-    },
+const SKILLS = [
+    "Design Thinking / Problem Framing",
+    "UX Research Methods",
+    "Design Systems",
+    "Rapid Prototyping",
+    "Typography",
 ]
 
-const TOOLS = ["Figma", "VS Code / Cursor", "Claude / ChatGPT", "Adobe Creative Suite"]
+const TOOLS = ["Figma", "Adobe Creative Cloud", "React", "Git", "Claude"]
 
 export default function About() {
     return (
@@ -138,40 +99,6 @@ export default function About() {
                     <div className="about-title-wrap">
                         <AudreyHeadline words={ABOUT_HEADLINE_WORDS} align="left" />
                     </div>
-
-                    <section className="about-skills-section">
-                        <div className="about-skills-col">
-                            <p className="about-section-label">Skills</p>
-                            {SKILL_CATEGORIES.map((category) => (
-                                <div className="skill-category" key={category.label}>
-                                    <p className="skill-category-label">
-                                        {category.label}
-                                    </p>
-                                    <div className="skill-chip-list">
-                                        {category.items.map((item) => (
-                                            <span className="skill-chip" key={item}>
-                                                {item}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-
-                        <div className="about-tools-col">
-                            <p className="about-section-label">Tools</p>
-                            <div className="skill-chip-list">
-                                {TOOLS.map((tool) => (
-                                    <span
-                                        className="skill-chip skill-chip--tool"
-                                        key={tool}
-                                    >
-                                        {tool}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-                    </section>
 
                     <p className="about-body about-body--lead">
                         I'm an interdisciplinary designer working at the
@@ -232,6 +159,33 @@ export default function About() {
                             </a>
                         </div>
                     </div>
+
+                    <section className="about-skills-section">
+                        <div className="about-skills-col">
+                            <p className="about-section-label">Skills</p>
+                            <div className="skill-chip-list">
+                                {SKILLS.map((skill) => (
+                                    <span className="skill-chip" key={skill}>
+                                        {skill}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="about-tools-col">
+                            <p className="about-section-label">Tools</p>
+                            <div className="skill-chip-list">
+                                {TOOLS.map((tool) => (
+                                    <span
+                                        className="skill-chip skill-chip--tool"
+                                        key={tool}
+                                    >
+                                        {tool}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
                 </div>
 
                 <div className="about-photo-col">
