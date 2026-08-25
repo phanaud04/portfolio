@@ -208,34 +208,36 @@
 }
 
 /* ── Skills & tools ── */
+/* Sits inside the narrow (420px) text column, right before the bio
+   copy — Skills gets more room than Tools since it has 5x the chips. */
 
 .about-skills-section {
     position: relative;
     z-index: 1;
     display: flex;
-    gap: var(--space-7);
-    margin-top: var(--space-8);
-    padding-top: var(--space-7);
-    border-top: 1px solid rgba(15, 11, 17, 0.1);
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
+    padding-bottom: var(--space-5);
+    border-bottom: 1px solid rgba(15, 11, 17, 0.1);
 }
 
 .about-skills-col {
-    flex: 2;
+    flex: 3;
     min-width: 0;
 }
 
 .about-tools-col {
-    flex: 1;
-    min-width: 200px;
+    flex: 2;
+    min-width: 0;
 }
 
 .about-skills-col .about-section-label,
 .about-tools-col .about-section-label {
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-3);
 }
 
 .skill-category {
-    margin-bottom: var(--space-5);
+    margin-bottom: var(--space-3);
 }
 
 .skill-category:last-child {
@@ -245,27 +247,27 @@
 .skill-category-label {
     font-family: var(--font-sans);
     font-weight: 500;
-    font-size: 14px;
+    font-size: 13px;
     color: var(--color-text);
-    margin: 0 0 var(--space-2);
+    margin: 0 0 6px;
 }
 
 .skill-chip-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 5px;
 }
 
 .skill-chip {
     font-family: var(--font-mono);
     font-weight: 400;
-    font-size: 12px;
+    font-size: 11px;
     line-height: 1;
     color: rgba(15, 11, 17, 0.75);
     background: rgba(161, 79, 204, 0.08);
     border: 1px solid rgba(161, 79, 204, 0.22);
     border-radius: var(--radius-chip);
-    padding: var(--space-2) var(--space-2);
+    padding: 6px 8px;
     white-space: nowrap;
 }
 

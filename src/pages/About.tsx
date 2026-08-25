@@ -82,25 +82,10 @@ const SKILL_CATEGORIES = [
         label: "UX/UI & Product Design",
         items: [
             "Design thinking",
-            "Problem framing",
-            "Product sense",
-            "User research (qual + quant)",
+            "User research",
             "Usability testing",
-            "Heuristic evaluation",
-            "User flows",
-            "Journey mapping",
-            "Wireframing",
-            "Rapid prototyping",
-            "Information architecture",
-            "Interaction design",
+            "Prototyping",
             "Design systems",
-            "Responsive/adaptive design",
-            "Accessibility (WCAG)",
-            "Content strategy",
-            "Service design",
-            "Competitive analysis",
-            "Stakeholder alignment",
-            "Design critique/presentation",
         ],
     },
     {
@@ -109,28 +94,13 @@ const SKILL_CATEGORIES = [
             "Typography",
             "Color theory",
             "Layout & composition",
-            "Branding/identity systems",
+            "Branding/identity",
             "Illustration",
-            "Iconography",
-            "Marketing collateral",
-            "Print + digital design",
-            "Micro-interaction/motion awareness",
         ],
     },
     {
         label: "Front-End Development",
-        items: [
-            "HTML",
-            "CSS",
-            "JavaScript",
-            "Java",
-            "React",
-            "Git/GitHub",
-            "API integration",
-            "Responsive coding",
-            "Deployment (Vercel)",
-            "Debugging",
-        ],
+        items: ["HTML", "CSS", "JavaScript", "React", "Git/GitHub"],
     },
     {
         label: "AI-Forward Workflow",
@@ -138,8 +108,8 @@ const SKILL_CATEGORIES = [
             "AI-assisted prototyping",
             "AI-assisted development",
             "Prompt engineering",
-            "Workflow/process optimization with AI tools",
-            "Translating design intent into AI-generated code",
+            "Workflow optimization",
+            "AI-generated code",
         ],
     },
     {
@@ -147,26 +117,9 @@ const SKILL_CATEGORIES = [
         items: [
             "Cross-functional collaboration",
             "Storytelling",
-            "User empathy",
             "Adaptability",
-            "Self-directed learning",
-            "Ownership",
-            "Comfort with ambiguity",
-            "Curiosity",
-            "Resilience",
-            "Prioritization under deadline pressure",
             "Critical thinking",
-            "Giving/receiving feedback",
-            "Stakeholder management",
-            "Initiative",
-            "Resourcefulness",
-            "Conflict navigation",
-            "Growth mindset",
-            "Attention to detail",
             "Systems thinking",
-            "Client relationship management",
-            "Negotiation",
-            "Mentorship",
         ],
     },
 ]
@@ -185,6 +138,40 @@ export default function About() {
                     <div className="about-title-wrap">
                         <AudreyHeadline words={ABOUT_HEADLINE_WORDS} align="left" />
                     </div>
+
+                    <section className="about-skills-section">
+                        <div className="about-skills-col">
+                            <p className="about-section-label">Skills</p>
+                            {SKILL_CATEGORIES.map((category) => (
+                                <div className="skill-category" key={category.label}>
+                                    <p className="skill-category-label">
+                                        {category.label}
+                                    </p>
+                                    <div className="skill-chip-list">
+                                        {category.items.map((item) => (
+                                            <span className="skill-chip" key={item}>
+                                                {item}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="about-tools-col">
+                            <p className="about-section-label">Tools</p>
+                            <div className="skill-chip-list">
+                                {TOOLS.map((tool) => (
+                                    <span
+                                        className="skill-chip skill-chip--tool"
+                                        key={tool}
+                                    >
+                                        {tool}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
 
                     <p className="about-body about-body--lead">
                         I'm an interdisciplinary designer working in spaces of
@@ -282,40 +269,6 @@ export default function About() {
                     ))}
                 </div>
             </div>
-
-            <section className="about-skills-section">
-                <div className="about-skills-col">
-                    <p className="about-section-label">Skills</p>
-                    {SKILL_CATEGORIES.map((category) => (
-                        <div className="skill-category" key={category.label}>
-                            <p className="skill-category-label">
-                                {category.label}
-                            </p>
-                            <div className="skill-chip-list">
-                                {category.items.map((item) => (
-                                    <span className="skill-chip" key={item}>
-                                        {item}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="about-tools-col">
-                    <p className="about-section-label">Tools</p>
-                    <div className="skill-chip-list">
-                        {TOOLS.map((tool) => (
-                            <span
-                                className="skill-chip skill-chip--tool"
-                                key={tool}
-                            >
-                                {tool}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-            </section>
 
             <AudreyFriend />
         </main>
