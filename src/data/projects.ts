@@ -69,20 +69,6 @@ export const PROJECTS: Project[] = [
         cursorNote: "project details coming. click to view demo!",
     },
     {
-        id: "rentee",
-        title: "Rentee",
-        category: "Product Design",
-        timeline: "2024 - 2025",
-        role: "Product Designer",
-        team: "Solo Project",
-        description:
-            "Helping renters understand and access their tenant rights through a more centralized, inclusive,  and accessible app. (Link to old site)",
-        image: "/images/projects/rentee.png",
-        href: "https://audreyphan.xyz/rentee/",
-        cursorNote:
-            "project hasn't been transferred to the site you are on. view on old site!",
-    },
-    {
         id: "joykill",
         title: "JoyKill",
         category: "Product Design",
@@ -93,6 +79,20 @@ export const PROJECTS: Project[] = [
             "Reimagining the horror genre through designing a femme-horror film festival. (Link to old site)",
         image: "/images/projects/joykill.png",
         href: "https://audreyphan.xyz/joykill/",
+        cursorNote:
+            "project hasn't been transferred to the site you are on. view on old site!",
+    },
+    {
+        id: "rentee",
+        title: "Rentee",
+        category: "Product Design",
+        timeline: "2024 - 2025",
+        role: "Product Designer",
+        team: "Solo Project",
+        description:
+            "Helping renters understand and access their tenant rights through a more centralized, inclusive,  and accessible app. (Link to old site)",
+        image: "/images/projects/rentee.png",
+        href: "https://audreyphan.xyz/rentee/",
         cursorNote:
             "project hasn't been transferred to the site you are on. view on old site!",
     },
