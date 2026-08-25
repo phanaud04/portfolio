@@ -174,9 +174,10 @@ export default function About() {
                     </section>
 
                     <p className="about-body about-body--lead">
-                        I'm an interdisciplinary designer working in spaces of
-                        innovative technology and visual art. I create products
-                        that focus on functional systems and expressive design.
+                        I'm an interdisciplinary designer working at the
+                        intersection of emerging technology and visual art,
+                        building products where systems thinking meets
+                        expressive design!
                     </p>
 
                     <div className="about-body-group">
