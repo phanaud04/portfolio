@@ -36,7 +36,7 @@ export const PROJECTS: Project[] = [
         category: "Product Design",
         timeline: "2024 - 2025",
         role: "Product Designer",
-        team: "Solo Project",
+        team: "IM $TACKED (7-Person Team)",
         description:
             "Magazine and app companion bringing awareness to Seattle creatives' unique experiences and challenges",
         image: "/images/projects/bits.png",
