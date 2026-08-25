@@ -51,8 +51,8 @@ export const PROJECTS: Project[] = [
         role: "Product Designer",
         team: "Solo Project (AI-assisted)",
         description:
-            "Reworking earlier app concept, 'Rentee' with the help of AI for design and development. vesta is helping marginalized renters connect through trusted circles for real rights knowledge and peer support.",
-        image: "/images/projects/vesta.png",
+            "A community-driven mobile app connecting marginalized renters through trusted circles, peer support, and plain-language rights resources — built end-to-end with AI as a design and development partner.",
+        image: "/images/projects/vesta-cover.jpg",
         cursorNote: "project still in process. contact me for more details",
     },
     {
