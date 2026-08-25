@@ -118,7 +118,34 @@ export default function AsciiTrail() {
             ? baseChars.split("").reverse().join("")
             : baseChars
 
+        // Only the pixels near an active trail point can ever end up with
+        // nonzero trail intensity, so instead of testing every point against
+        // every grid cell (cols * rows * points, the dominant per-frame cost
+        // at full-viewport sizes), splat each point's screen-blended value
+        // into just the small cell box within its own radius. Reused across
+        // frames and resized lazily in the main loop below.
+        let intensityGrid = new Float32Array(0)
+        let gridCols = 0
+        let gridRows = 0
+
+        // Pausing the rAF loop while the canvas is scrolled out of view
+        // matters most for the footer's instance, which lives outside
+        // <Routes> and so keeps running for the entire session — without
+        // this it burns cycles on every page even while nobody can see it.
+        let isVisible = true
+        const intersectionObserver = new IntersectionObserver(
+            ([entry]) => {
+                isVisible = entry.isIntersecting
+            },
+            { threshold: 0 }
+        )
+        intersectionObserver.observe(canvas)
+
         const animate = () => {
+            if (!isVisible) {
+                frameRef.current = requestAnimationFrame(animate)
+                return
+            }
             time.current += 0.016
             ctx.clearRect(0, 0, canvas.width, canvas.height)
 
@@ -167,15 +194,29 @@ export default function AsciiTrail() {
             const cols = Math.ceil(canvas.width / charSize)
             const rows = Math.ceil(canvas.height / charSize)
 
-            for (let row = 0; row < rows; row++) {
-                for (let col = 0; col < cols; col++) {
-                    const x = col * charSize + charSize / 2
-                    const y = row * charSize + charSize / 2
+            if (gridCols !== cols || gridRows !== rows) {
+                intensityGrid = new Float32Array(cols * rows)
+                gridCols = cols
+                gridRows = rows
+            } else {
+                intensityGrid.fill(0)
+            }
 
-                    let intensity = 0
-                    trail.current.forEach((point) => {
+            const maxDist = (CONFIG.radius / 100) * 150
+            const cellRadius = Math.ceil(maxDist / charSize)
+            trail.current.forEach((point) => {
+                const pointCol = Math.floor(point.x / charSize)
+                const pointRow = Math.floor(point.y / charSize)
+                const colStart = Math.max(0, pointCol - cellRadius)
+                const colEnd = Math.min(cols - 1, pointCol + cellRadius)
+                const rowStart = Math.max(0, pointRow - cellRadius)
+                const rowEnd = Math.min(rows - 1, pointRow + cellRadius)
+
+                for (let row = rowStart; row <= rowEnd; row++) {
+                    for (let col = colStart; col <= colEnd; col++) {
+                        const x = col * charSize + charSize / 2
+                        const y = row * charSize + charSize / 2
                         const dist = Math.hypot(x - point.x, y - point.y)
-                        const maxDist = (CONFIG.radius / 100) * 150
                         if (dist < maxDist) {
                             const value =
                                 (1 - dist / maxDist) *
@@ -185,9 +226,20 @@ export default function AsciiTrail() {
                             // this always resolves to the screen formula —
                             // apply it directly instead of branching on a
                             // value that can never be anything else.
-                            intensity = 1 - (1 - intensity) * (1 - value)
+                            const idx = row * cols + col
+                            intensityGrid[idx] =
+                                1 - (1 - intensityGrid[idx]) * (1 - value)
                         }
-                    })
+                    }
+                }
+            })
+
+            for (let row = 0; row < rows; row++) {
+                for (let col = 0; col < cols; col++) {
+                    const x = col * charSize + charSize / 2
+                    const y = row * charSize + charSize / 2
+
+                    let intensity = intensityGrid[row * cols + col]
 
                     // Ambient twinkle — a sparse field of glyphs that pulse
                     // on their own timer, independent of the mouse, so the
@@ -284,6 +336,7 @@ export default function AsciiTrail() {
 
         return () => {
             resizeObserver.disconnect()
+            intersectionObserver.disconnect()
             window.removeEventListener("pointermove", handleMouse)
             if (frameRef.current) cancelAnimationFrame(frameRef.current)
         }
