@@ -64,7 +64,7 @@ export const PROJECTS: Project[] = [
         team: "University of Washington",
         description:
             "As a UX Design Intern for the University of Washington, I designed and built a site on Figma helping students manage the complex processes in student conduct. (Case study in progress)",
-        image: "/images/projects/uw-conduct.png",
+        image: "/images/projects/uw-conduct-cover.jpg",
         href: "https://flint-speed-41513011.figma.site/",
         cursorNote: "project details coming. click to view demo!",
     },
