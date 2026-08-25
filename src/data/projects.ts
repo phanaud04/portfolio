@@ -56,6 +56,19 @@ export const PROJECTS: Project[] = [
         cursorNote: "project still in process. contact me for more details",
     },
     {
+        id: "uw-conduct",
+        title: "UW Student Conduct Site",
+        category: "Product Design",
+        timeline: "2025 - 2026",
+        role: "UX Design Intern",
+        team: "University of Washington",
+        description:
+            "As a UX Design Intern for the University of Washington, I designed and built a site on Figma helping students manage the complex processes in student conduct. (Case study in progress)",
+        image: "/images/projects/uw-conduct.png",
+        href: "https://flint-speed-41513011.figma.site/",
+        cursorNote: "project details coming. click to view demo!",
+    },
+    {
         id: "rentee",
         title: "Rentee",
         category: "Product Design",
@@ -68,19 +81,6 @@ export const PROJECTS: Project[] = [
         href: "https://audreyphan.xyz/rentee/",
         cursorNote:
             "project hasn't been transferred to the site you are on. view on old site!",
-    },
-    {
-        id: "uw-conduct",
-        title: "UW Student Conduct Site",
-        category: "Product Design",
-        timeline: "2025 - 2026",
-        role: "UX Design Intern",
-        team: "University of Washington",
-        description:
-            "As a UX Design Intern for the University of Washington, I designed and built a site on Figma helping students manage the complex processes in student conduct. (Case study in progress)",
-        image: "/images/projects/uw-conduct.png",
-        href: "https://flint-speed-41513011.figma.site/",
-        cursorNote: "project details coming. click to view demo!",
     },
     {
         id: "joykill",
