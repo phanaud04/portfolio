@@ -3,6 +3,7 @@ import { PLAY_CATEGORIES, type PlayItem } from "../data/play"
 import GlowingEffect from "../components/GlowingEffect"
 import GradientCtaButton from "../components/GradientCtaButton"
 import AsciiTrail from "../components/AsciiTrail"
+import PlayWizard from "../components/PlayWizard"
 import "./Play.css"
 
 type EntrySize = "s" | "m" | "l"
@@ -219,6 +220,8 @@ export default function Play() {
             {expanded && (
                 <Lightbox entry={expanded} onClose={() => setExpanded(null)} />
             )}
+
+            <PlayWizard />
         </main>
     )
 }
