@@ -203,6 +203,12 @@ export default function AudreyCharacter({
     const [modeState, setModeState] = React.useState<Mode>("walking")
     const modeRef = React.useRef<Mode>("walking")
 
+    // Purely cosmetic hover affordance — the site hides the native cursor
+    // (see CustomCursor), so "cursor: grab" alone is invisible. A small
+    // scale-up plus the shared custom-cursor label (data-cursor-label
+    // below) are what actually tell someone this thing is draggable.
+    const [isHovering, setIsHovering] = React.useState(false)
+
     // Scared state — true while falling and for a beat after landing.
     // Kept in both a ref (for the rAF loop, which never reads React state
     // directly) and state (so bubbleText re-renders).
@@ -782,11 +788,17 @@ export default function AudreyCharacter({
                 onPointerDown={handlePointerDown}
                 onPointerMove={handlePointerMove}
                 onPointerUp={handlePointerUp}
+                onPointerEnter={() => setIsHovering(true)}
+                onPointerLeave={() => setIsHovering(false)}
+                data-cursor-label="drag me!"
                 style={{
                     position: "absolute",
                     width: size,
                     height: size,
-                    transform: "translate(-50%, -50%)",
+                    transform: `translate(-50%, -50%) scale(${
+                        isHovering && modeState !== "dragging" ? 1.12 : 1
+                    })`,
+                    transition: "transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1)",
                     pointerEvents: "auto",
                     touchAction: "none",
                     cursor: modeState === "dragging" ? "grabbing" : "grab",

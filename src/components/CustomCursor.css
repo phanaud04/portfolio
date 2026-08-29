@@ -11,7 +11,11 @@
     background: var(--color-accent);
     white-space: nowrap;
     pointer-events: none;
-    z-index: 9999;
+    /* Above AudreyCharacter/AudreyFriend/PlayWizard (z-index 99999) — the
+       cursor label needs to stay visible even while hovering directly over
+       one of them (e.g. AudreyCharacter's "drag me!" hint), not get
+       tucked behind it. */
+    z-index: 100000;
     will-change: transform;
     transition:
         width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
