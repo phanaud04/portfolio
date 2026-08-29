@@ -22,6 +22,115 @@ type Props = {
 // the site's own brand gradient instead of the original's arbitrary colors.
 // Renders as an absolutely-positioned overlay — the parent needs
 // `position: relative` and a border-radius for `inherit` to pick up.
+//
+// Every instance used to run its own document-level pointermove listener
+// and call getBoundingClientRect() independently in response — fine with a
+// couple of instances, but pages like Play (~50 tiles, each with one of
+// these) turned every mouse move into dozens of interleaved layout
+// reads/writes, i.e. layout thrashing. A single shared listener below
+// drives every mounted instance from one rAF, reading every instance's
+// bounding rect first (one clean batch) and only then writing any style
+// changes, so a page with N instances forces layout once per frame instead
+// of up to N times.
+type RegisteredInstance = {
+    el: HTMLDivElement
+    proximity: number
+    inactiveZone: number
+    movementDuration: number
+    angleRef: React.MutableRefObject<number>
+}
+
+const registry = new Set<RegisteredInstance>()
+const pointer = { x: 0, y: 0 }
+let frameHandle: number | null = null
+let listenersAttached = false
+
+function processFrame() {
+    frameHandle = null
+    if (registry.size === 0) return
+
+    // Phase 1 — reads only.
+    const rects = new Map<RegisteredInstance, DOMRect>()
+    registry.forEach((inst) => {
+        rects.set(inst, inst.el.getBoundingClientRect())
+    })
+
+    // Phase 2 — writes only.
+    registry.forEach((inst) => {
+        const rect = rects.get(inst)
+        if (!rect) return
+        const { left, top, width, height } = rect
+        const center = [left + width * 0.5, top + height * 0.5]
+        const distanceFromCenter = Math.hypot(
+            pointer.x - center[0],
+            pointer.y - center[1]
+        )
+        const inactiveRadius = 0.5 * Math.min(width, height) * inst.inactiveZone
+
+        if (distanceFromCenter < inactiveRadius) {
+            inst.el.style.setProperty("--active", "0")
+            return
+        }
+
+        const isActive =
+            pointer.x > left - inst.proximity &&
+            pointer.x < left + width + inst.proximity &&
+            pointer.y > top - inst.proximity &&
+            pointer.y < top + height + inst.proximity
+
+        inst.el.style.setProperty("--active", isActive ? "1" : "0")
+        if (!isActive) return
+
+        const currentAngle = inst.angleRef.current
+        const targetAngle =
+            (180 * Math.atan2(pointer.y - center[1], pointer.x - center[0])) /
+                Math.PI +
+            90
+        const angleDiff = ((targetAngle - currentAngle + 180) % 360) - 180
+        const newAngle = currentAngle + angleDiff
+
+        animate(currentAngle, newAngle, {
+            duration: inst.movementDuration,
+            ease: [0.16, 1, 0.3, 1],
+            onUpdate: (value) => {
+                inst.angleRef.current = value
+                inst.el.style.setProperty("--start", String(value))
+            },
+        })
+    })
+}
+
+function scheduleFrame() {
+    if (frameHandle != null) return
+    frameHandle = requestAnimationFrame(processFrame)
+}
+
+function handlePointerMove(e: PointerEvent) {
+    pointer.x = e.clientX
+    pointer.y = e.clientY
+    scheduleFrame()
+}
+
+function handleScroll() {
+    scheduleFrame()
+}
+
+function ensureListeners() {
+    if (listenersAttached) return
+    listenersAttached = true
+    document.body.addEventListener("pointermove", handlePointerMove, {
+        passive: true,
+    })
+    window.addEventListener("scroll", handleScroll, { passive: true })
+}
+
+function releaseListenersIfIdle() {
+    if (registry.size > 0 || !listenersAttached) return
+    listenersAttached = false
+    document.body.removeEventListener("pointermove", handlePointerMove)
+    window.removeEventListener("scroll", handleScroll)
+}
+
 export default function GlowingEffect({
     proximity = 48,
     spread = 34,
@@ -32,81 +141,28 @@ export default function GlowingEffect({
     className = "",
 }: Props) {
     const containerRef = React.useRef<HTMLDivElement>(null)
-    const lastPosition = React.useRef({ x: 0, y: 0 })
-    const rafRef = React.useRef<number>(0)
-
-    const handleMove = React.useCallback(
-        (e?: PointerEvent | { x: number; y: number }) => {
-            if (!containerRef.current) return
-            if (rafRef.current) cancelAnimationFrame(rafRef.current)
-
-            rafRef.current = requestAnimationFrame(() => {
-                const element = containerRef.current
-                if (!element) return
-
-                const { left, top, width, height } =
-                    element.getBoundingClientRect()
-                const mouseX = e?.x ?? lastPosition.current.x
-                const mouseY = e?.y ?? lastPosition.current.y
-                if (e) lastPosition.current = { x: mouseX, y: mouseY }
-
-                const center = [left + width * 0.5, top + height * 0.5]
-                const distanceFromCenter = Math.hypot(
-                    mouseX - center[0],
-                    mouseY - center[1]
-                )
-                const inactiveRadius =
-                    0.5 * Math.min(width, height) * inactiveZone
-
-                if (distanceFromCenter < inactiveRadius) {
-                    element.style.setProperty("--active", "0")
-                    return
-                }
-
-                const isActive =
-                    mouseX > left - proximity &&
-                    mouseX < left + width + proximity &&
-                    mouseY > top - proximity &&
-                    mouseY < top + height + proximity
-
-                element.style.setProperty("--active", isActive ? "1" : "0")
-                if (!isActive) return
-
-                const currentAngle =
-                    parseFloat(element.style.getPropertyValue("--start")) || 0
-                const targetAngle =
-                    (180 * Math.atan2(mouseY - center[1], mouseX - center[0])) /
-                        Math.PI +
-                    90
-                const angleDiff = ((targetAngle - currentAngle + 180) % 360) - 180
-                const newAngle = currentAngle + angleDiff
-
-                animate(currentAngle, newAngle, {
-                    duration: movementDuration,
-                    ease: [0.16, 1, 0.3, 1],
-                    onUpdate: (value) => {
-                        element.style.setProperty("--start", String(value))
-                    },
-                })
-            })
-        },
-        [inactiveZone, proximity, movementDuration]
-    )
+    const angleRef = React.useRef(0)
 
     React.useEffect(() => {
         if (disabled) return
-        const onScroll = () => handleMove()
-        const onPointerMove = (e: PointerEvent) => handleMove(e)
-        window.addEventListener("scroll", onScroll, { passive: true })
-        document.body.addEventListener("pointermove", onPointerMove, {
-            passive: true,
-        })
-        return () => {
-            if (rafRef.current) cancelAnimationFrame(rafRef.current)
-            window.removeEventListener("scroll", onScroll)
-            document.body.removeEventListener("pointermove", onPointerMove)
+        const el = containerRef.current
+        if (!el) return
+
+        const instance: RegisteredInstance = {
+            el,
+            proximity,
+            inactiveZone,
+            movementDuration,
+            angleRef,
         }
-    }, [handleMove, disabled])
+        registry.add(instance)
+        ensureListeners()
+
+        return () => {
+            registry.delete(instance)
+            releaseListenersIfIdle()
+        }
+    }, [disabled, proximity, inactiveZone, movementDuration])
 
     if (disabled) return null
 
