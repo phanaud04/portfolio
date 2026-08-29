@@ -22,7 +22,7 @@ export const PROJECTS: Project[] = [
         title: "WSDOT App Redesign",
         category: "Product Design",
         timeline: "2025 - 2026",
-        role: "UX/UI Designer, UX Researcher",
+        role: "Lead Product Designer, UX Researcher",
         team: "iDOT (Capstone)",
         description:
             "Redesign of Washington State Department of Transportation's IOS app with 500k+ users.",
