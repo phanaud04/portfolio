@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom"
+import type { MouseEvent } from "react"
+import { useCaseStudyTransition } from "./CaseStudyTransition"
 
 type Props = {
     /** Route to the next case study (e.g. "/bits"). */
@@ -14,8 +16,17 @@ type Props = {
 // BitsCaseStudy (see caseStudy.css's .case-next-project rules); reuse this
 // for any future case study page instead of re-copying the markup.
 export default function CaseStudyNextProject({ to, video, title }: Props) {
+    const { startTransition } = useCaseStudyTransition()
+
+    const handleClick = (e: MouseEvent) => {
+        if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)
+            return
+        e.preventDefault()
+        startTransition(e.clientX, e.clientY, to)
+    }
+
     return (
-        <Link to={to} className="case-next-project">
+        <Link to={to} className="case-next-project" onClick={handleClick}>
             <div className="case-next-project-media">
                 <video src={video} autoPlay loop muted playsInline />
             </div>

@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom"
+import type { MouseEvent } from "react"
 import type { Project } from "../data/projects"
 import GlowingEffect from "./GlowingEffect"
+import { useCaseStudyTransition } from "./CaseStudyTransition"
 
 export default function ProjectCard({ project }: { project: Project }) {
     const isExternal = project.href?.startsWith("http")
+    const { startTransition } = useCaseStudyTransition()
     const Wrapper = project.href ? (isExternal ? "a" : Link) : "article"
     const cursorProps = project.cursorNote
         ? {
@@ -11,6 +14,25 @@ export default function ProjectCard({ project }: { project: Project }) {
               "data-cursor-variant": "note",
           }
         : { "data-cursor-label": "View Case Study" }
+
+    // Internal case study links get the circle-wipe transition instead of
+    // a hard navigation cut. Modified clicks (new tab, new window) are left
+    // alone so opening in the background still works normally.
+    const handleClick = (e: MouseEvent) => {
+        if (
+            isExternal ||
+            !project.href ||
+            e.button !== 0 ||
+            e.metaKey ||
+            e.ctrlKey ||
+            e.shiftKey ||
+            e.altKey
+        )
+            return
+        e.preventDefault()
+        startTransition(e.clientX, e.clientY, project.href)
+    }
+
     const wrapperProps = project.href
         ? {
               ...(isExternal
@@ -19,7 +41,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                         target: "_blank",
                         rel: "noreferrer",
                     }
-                  : { to: project.href }),
+                  : { to: project.href, onClick: handleClick }),
               className: "project-card project-card--linked",
               ...cursorProps,
           }
