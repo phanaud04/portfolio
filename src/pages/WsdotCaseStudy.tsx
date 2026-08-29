@@ -144,7 +144,7 @@ export default function WsdotCaseStudy() {
                     <div>
                         <p className="case-meta-label">Role</p>
                         <p className="case-meta-value">
-                            UX/UI Designer
+                            Lead Product Designer
                             <br />
                             UX Researcher
                         </p>
@@ -155,7 +155,7 @@ export default function WsdotCaseStudy() {
                             <ViewCredits
                                 lines={[
                                     "Keilani Uehara (Product Manager)",
-                                    "Audrey Phan (UX Designer)",
+                                    "Audrey Phan (Lead Product Designer)",
                                     "Arohee Kumar (Developer)",
                                     "Jules Braun (Developer)",
                                     "Daniel Bejar (Developer)",
