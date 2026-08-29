@@ -213,6 +213,15 @@ export default function AudreyCharacter({
     )
     const lastFallAt = React.useRef(0)
 
+    // Set right before a scroll-triggered fall — forces walkTarget to
+    // "bottom" at landing regardless of whether the card is still
+    // reachable, so even a small scroll (card barely still on screen)
+    // drops it for good instead of bouncing straight back up onto the
+    // card. A drag that misses the headline falls too, but through the
+    // normal reachability check (dropping mid-card-patrol should still
+    // resume patrolling if the card is right there).
+    const forceGroundOnLand = React.useRef(false)
+
     // How close a drag currently is to the headline — drives the bubble
     // text while dragging ("far" → "near" → "ready").
     const [proximity, setProximity] = React.useState<Proximity>("far")
@@ -321,6 +330,7 @@ export default function AudreyCharacter({
                 modeRef.current === "dragging" ||
                 walkTarget.current === "card"
             if (!elevated) return
+            forceGroundOnLand.current = true
             startFalling()
         }
         window.addEventListener("scroll", handleScroll, { passive: true })
@@ -552,16 +562,24 @@ export default function AudreyCharacter({
                     // reverse (see walkTarget's declaration comment) — if
                     // it was still trying to follow the card, check
                     // whether that's still reachable from here; if it had
-                    // already given up on the card, leave it be.
+                    // already given up on the card, leave it be. A
+                    // scroll-triggered fall skips the reachability check
+                    // entirely and always grounds it (see
+                    // forceGroundOnLand's declaration comment).
                     if (walkTarget.current === "card") {
-                        const landedCard = getWalkCard(surfaceSelector, surfaceIndex)
-                        const landedRect = landedCard
-                            ? landedCard.getBoundingClientRect()
-                            : null
-                        if (!isCardWalkable(landedRect, feetOffset)) {
+                        if (forceGroundOnLand.current) {
                             walkTarget.current = "bottom"
+                        } else {
+                            const landedCard = getWalkCard(surfaceSelector, surfaceIndex)
+                            const landedRect = landedCard
+                                ? landedCard.getBoundingClientRect()
+                                : null
+                            if (!isCardWalkable(landedRect, feetOffset)) {
+                                walkTarget.current = "bottom"
+                            }
                         }
                     }
+                    forceGroundOnLand.current = false
                     setMode("walking")
                 }
                 applyFlail(dt, false)
