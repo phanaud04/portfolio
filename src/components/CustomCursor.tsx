@@ -8,9 +8,16 @@ import "./CustomCursor.css"
 // of showing nothing on hover.
 const HOVER_TARGET_SELECTOR = "[data-cursor-label]"
 
+// Any element can opt out of the dot entirely via data-cursor-hide — used
+// by AudreyCharacter, whose sprite is the same accent color as the dot, so
+// the dot sitting over its eyes/mouth reads as covering the face rather
+// than as a cursor.
+const HIDE_TARGET_SELECTOR = "[data-cursor-hide]"
+
 export default function CustomCursor() {
     const dotRef = useRef<HTMLDivElement>(null)
     const [hovering, setHovering] = useState(false)
+    const [hidden, setHidden] = useState(false)
     const [label, setLabel] = useState("")
     const [variant, setVariant] = useState<"pill" | "note">("pill")
     const { pathname } = useLocation()
@@ -21,6 +28,7 @@ export default function CustomCursor() {
     // explicitly whenever the page changes.
     useEffect(() => {
         setHovering(false)
+        setHidden(false)
     }, [pathname])
 
     useEffect(() => {
@@ -48,14 +56,24 @@ export default function CustomCursor() {
                 setVariant(el.dataset.cursorVariant === "note" ? "note" : "pill")
                 setHovering(true)
             }
+            const hideEl = (e.target as HTMLElement).closest?.(
+                HIDE_TARGET_SELECTOR
+            )
+            if (hideEl) setHidden(true)
         }
         const onOut = (e: PointerEvent) => {
+            const related = e.relatedTarget as HTMLElement | null
             const target = (e.target as HTMLElement).closest?.(
                 HOVER_TARGET_SELECTOR
             )
-            const related = e.relatedTarget as HTMLElement | null
             if (target && !target.contains(related)) {
                 setHovering(false)
+            }
+            const hideTarget = (e.target as HTMLElement).closest?.(
+                HIDE_TARGET_SELECTOR
+            )
+            if (hideTarget && !hideTarget.contains(related)) {
+                setHidden(false)
             }
         }
 
@@ -72,7 +90,8 @@ export default function CustomCursor() {
     const className =
         "custom-cursor" +
         (hovering ? " custom-cursor--pill" : "") +
-        (hovering && variant === "note" ? " custom-cursor--note" : "")
+        (hovering && variant === "note" ? " custom-cursor--note" : "") +
+        (hidden ? " custom-cursor--hidden" : "")
 
     return (
         <div
