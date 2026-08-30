@@ -11,9 +11,9 @@
     background: var(--color-accent);
     white-space: nowrap;
     pointer-events: none;
-    /* Above AudreyCharacter/AudreyFriend/PlayWizard (z-index 99999) — the
-       cursor label needs to stay visible even while hovering directly over
-       one of them (e.g. AudreyCharacter's "drag me!" hint), not get
+    /* Above AudreyCharacter/AudreyFriend/PlayWizard (z-index 99999) — a
+       project card's cursor label (e.g. "View Case Study") needs to stay
+       visible even if one of them happens to be walking across it, not get
        tucked behind it. */
     z-index: 100000;
     will-change: transform;

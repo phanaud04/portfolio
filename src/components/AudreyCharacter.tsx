@@ -205,8 +205,12 @@ export default function AudreyCharacter({
 
     // Purely cosmetic hover affordance — the site hides the native cursor
     // (see CustomCursor), so "cursor: grab" alone is invisible. A small
-    // scale-up plus the shared custom-cursor label (data-cursor-label
-    // below) are what actually tell someone this thing is draggable.
+    // scale-up plus an accent-colored drop-shadow glow (see the wrapper's
+    // `filter` below) are what actually tell someone this thing is
+    // draggable. Deliberately not the shared custom-cursor label used
+    // elsewhere on the site (see ProjectCard) — that pill renders at the
+    // literal cursor position, which sits right over the character's face
+    // while hovering it.
     const [isHovering, setIsHovering] = React.useState(false)
 
     // Scared state — true while falling and for a beat after landing.
@@ -790,7 +794,6 @@ export default function AudreyCharacter({
                 onPointerUp={handlePointerUp}
                 onPointerEnter={() => setIsHovering(true)}
                 onPointerLeave={() => setIsHovering(false)}
-                data-cursor-label="drag me!"
                 style={{
                     position: "absolute",
                     width: size,
@@ -798,7 +801,17 @@ export default function AudreyCharacter({
                     transform: `translate(-50%, -50%) scale(${
                         isHovering && modeState !== "dragging" ? 1.12 : 1
                     })`,
-                    transition: "transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1)",
+                    // Drop-shadow (not box-shadow) hugs the sprite's actual
+                    // silhouette rather than its bounding box, so the glow
+                    // reads as a highlight around the character instead of
+                    // a rectangle — and never sits on top of the face the
+                    // way the old cursor-follow "drag me!" label did.
+                    filter:
+                        isHovering && modeState !== "dragging"
+                            ? "drop-shadow(0 0 10px var(--color-accent)) drop-shadow(0 0 2px var(--color-accent))"
+                            : "none",
+                    transition:
+                        "transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.18s ease",
                     pointerEvents: "auto",
                     touchAction: "none",
                     cursor: modeState === "dragging" ? "grabbing" : "grab",
