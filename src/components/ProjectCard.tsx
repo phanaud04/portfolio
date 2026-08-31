@@ -75,7 +75,14 @@ export default function ProjectCard({ project }: { project: Project }) {
             <div className="project-card-body">
                 <div className="project-card-header">
                     <h4>{project.title}</h4>
-                    <span className="chip">{project.category}</span>
+                    <div className="project-card-tags">
+                        <span className="chip">{project.category}</span>
+                        {project.tags?.map((tag) => (
+                            <span className="chip" key={tag}>
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
                 </div>
                 <p className="project-card-desc">{project.description}</p>
 

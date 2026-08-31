@@ -14,13 +14,16 @@ export type Project = {
     /** Optional custom-cursor label shown while hovering a card that has no
      *  `href` (e.g. still-in-progress projects) instead of no label at all. */
     cursorNote?: string
+    /** Extra chips shown alongside `category` (e.g. an award callout). */
+    tags?: string[]
 }
 
 export const PROJECTS: Project[] = [
     {
         id: "wsdot",
-        title: "WSDOT App Redesign",
+        title: "Washington State Department of Transportation Traveler's App",
         category: "Product Design",
+        tags: ["Awarded 1st place"],
         timeline: "2025 - 2026",
         role: "Lead Product Designer, UX Researcher",
         team: "iDOT (Capstone)",

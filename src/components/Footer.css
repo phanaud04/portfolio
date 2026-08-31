@@ -47,7 +47,32 @@
     flex-shrink: 0;
 }
 
+/* Wraps the nav + contact links in their own panel, background-matched to
+   the page (not the footer's cream), so it visually separates from the
+   footer's full-strength ascii trail. The trail still runs inside it, via
+   its own instance, but dimmed to the same ambient level used behind the
+   Home/About/Play content instead of the footer's "main event" strength. */
+.site-footer-links-box {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    background: var(--color-bg);
+    padding: var(--space-4) var(--space-5);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-4);
+}
+
+.site-footer-links-box-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.16;
+    pointer-events: none;
+}
+
 .site-footer-links {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -113,6 +138,11 @@
 
     .site-footer-right {
         align-items: center;
+    }
+
+    .site-footer-links-box {
+        align-items: center;
+        width: 100%;
     }
 
     .site-footer-links {

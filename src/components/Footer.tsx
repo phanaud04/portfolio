@@ -21,43 +21,54 @@ export default function Footer() {
                     <span>together.</span>
                 </h2>
                 <div className="site-footer-right">
-                    <nav className="site-footer-links" aria-label="Footer navigation">
-                        {NAV_LINKS.map((item) => (
-                            <Link
-                                key={item.label}
-                                to={item.to}
+                    <div className="site-footer-links-box">
+                        <div
+                            className="site-footer-links-box-bg"
+                            aria-hidden="true"
+                        >
+                            <AsciiTrail />
+                        </div>
+                        <nav
+                            className="site-footer-links"
+                            aria-label="Footer navigation"
+                        >
+                            {NAV_LINKS.map((item) => (
+                                <Link
+                                    key={item.label}
+                                    to={item.to}
+                                    className="site-footer-link"
+                                >
+                                    {item.label}
+                                </Link>
+                            ))}
+                        </nav>
+                        <div className="site-footer-links">
+                            <a
                                 className="site-footer-link"
+                                href={`mailto:${CONTACT.email}`}
+                                aria-label="Email Audrey"
                             >
-                                {item.label}
-                            </Link>
-                        ))}
-                    </nav>
-                    <div className="site-footer-links">
-                        <a
-                            className="site-footer-link"
-                            href={`mailto:${CONTACT.email}`}
-                            aria-label="Email Audrey"
-                        >
-                            email
-                        </a>
-                        <a
-                            className="site-footer-link"
-                            href={CONTACT.linkedinHref}
-                            target="_blank"
-                            rel="noreferrer noopener"
-                            aria-label="Audrey's LinkedIn"
-                        >
-                            linkedin
-                        </a>
-                        <a
-                            className="site-footer-link"
-                            href={CONTACT.resumeHref}
-                            target="_blank"
-                            rel="noreferrer noopener"
-                            aria-label="Audrey's resume"
-                        >
-                            resume
-                        </a>
+                                email
+                            </a>
+                            <a
+                                className="site-footer-link"
+                                href={CONTACT.linkedinHref}
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                aria-label="Audrey's LinkedIn"
+                            >
+                                linkedin
+                            </a>
+                            <a
+                                className="site-footer-link"
+                                href={CONTACT.resumeHref}
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                aria-label="Audrey's resume"
+                            >
+                                resume
+                            </a>
+                        </div>
                     </div>
                     <p className="site-footer-meta">
                         © {new Date().getFullYear()} Audrey Phan
